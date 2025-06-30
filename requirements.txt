@@ -5,3 +5,7 @@ langchain_community
 langgraph
 python-dotenv
 langchain_core
+pydantic 
+fastapi
+uvicorn
+streamlit

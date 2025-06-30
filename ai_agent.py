@@ -4,8 +4,8 @@ from langchain_openai import ChatOpenAI
 from typing import List
 from langchain_tavily import TavilySearch
 from langgraph.prebuilt import create_react_agent
-from dotenv import load_dotenv
-load_dotenv() 
+#from dotenv import load_dotenv
+#load_dotenv() 
 from frontend import API_KEY_MODEL,API_KEY_TAVILY
 from langchain_core.messages import AIMessage, HumanMessage 
 
