@@ -31,8 +31,8 @@ LangGraph AI Agent is a conversational web-based chatbot powered by FastAPI (bac
 
 ```bash
 # Clone the repository and navigate into the project directory
-git clone https://github.com/yourusername/langgraph-ai-agent.git
-cd langgraph-ai-agent
+git clone https://github.com/mayurnikam266/Langgraph-Web-Search-AI-Agent-.git
+cd Langgraph-Web-Search-AI-Agent-
 
 # Build the Docker image with a custom tag
 docker build -t ai-agent-app .
