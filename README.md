@@ -37,3 +37,9 @@ cd Langgraph-Web-Search-AI-Agent-
 # Build the Docker image with a custom tag
 docker build -t ai-agent-app .
 
+# Run the container, mapping:
+# - FastAPI to port 8000
+# - Streamlit to port 8501
+docker run -d -p 8000:8000 -p 8501:8501 ai-agent-app
+
+
