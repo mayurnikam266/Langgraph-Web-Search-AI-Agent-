@@ -11,7 +11,7 @@ from langchain_core.messages import AIMessage, HumanMessage
 
 
 # Load API keys from environment variables
-groq_llm = ChatGroq(model="llama3-70b-8192", api_key=API_KEY)
+groq_llm = ChatGroq(model="llama3-70b-8192", api_key=API_KEY_MODEL)
 
 
 
