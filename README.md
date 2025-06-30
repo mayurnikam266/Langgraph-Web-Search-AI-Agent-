@@ -41,5 +41,20 @@ docker build -t ai-agent-app .
 # - FastAPI to port 8000
 # - Streamlit to port 8501
 docker run -d -p 8000:8000 -p 8501:8501 ai-agent-app
+````
 
 
+## 🐳 To build optimized Docker image with high compression compression 
+```bash
+# Clone the repository and navigate into the project directory
+git clone https://github.com/mayurnikam266/Langgraph-Web-Search-AI-Agent-.git
+cd Langgraph-Web-Search-AI-Agent-
+
+# Build the Docker image with a custom tag
+docker build -t ai-agent-app -f Docker-optimized  .
+
+# Run the container, mapping:
+# - FastAPI to port 8000
+# - Streamlit to port 8501
+docker run -d -p 8000:8000 -p 8501:8501 ai-agent-app
+````
