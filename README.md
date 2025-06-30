@@ -27,12 +27,13 @@ LangGraph AI Agent is a conversational web-based chatbot powered by FastAPI (bac
 
 ## 🐳 Docker Usage
 
-### ✅ Build the Docker Image
+### ✅ Step 1: Build the Docker Image
 
-# Build the Docker image
-'''bash
+```bash
+# Clone the repository and navigate into the project directory
+git clone https://github.com/yourusername/langgraph-ai-agent.git
+cd langgraph-ai-agent
+
+# Build the Docker image with a custom tag
 docker build -t ai-agent-app .
 
-# Run the container, mapping ports for FastAPI (8000) and Streamlit (8501)
-'''bash
-docker run -d -p 8000:8000 -p 8501:8501 ai-agent-app
