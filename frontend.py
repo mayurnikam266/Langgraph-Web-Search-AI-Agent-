@@ -13,10 +13,10 @@ MODEL_NAMES_OPENAI = ["gpt-4o-mini"]
 
 provider=st.radio("Select Model Provider:",("groq","openai"))
 
-API_KEY_MODEL = st.text_input("Enter your API Key of Selected Model ", type="password", placeholder="Enter your API Key here...")
-API_KEY_MODEL = API_KEY_MODEL.strip()
-
-API_KEY_TAVILY = st.text_input("Enter your Tavily API Key To search n Web", type="password", placeholder="Enter your Tavily API Key here...")
+api_key_model= st.text_input("Enter your API Key of Selected Model ", type="password", placeholder="Enter your API Key here...").strip()
+api_key_model = api_key_model if api_key_model else None
+tavily_api_key = st.text_input("Enter your Tavily API Key To search n Web", type="password", placeholder="Enter your Tavily API Key here...")
+tavily_api_key = tavily_api_key.strip() if tavily_api_key else None
 
 
 if provider == "groq":
@@ -27,7 +27,7 @@ elif provider == "openai":
 allow_search =st.checkbox("Allow Web Search")
 user_query = st.text_area("Ask a question to your AI Agent:",height=70, placeholder="Ask Anything ...")
 
-API_URL ="http://127.0.0.2:8000/chat"
+API_URL ="http://localhost:8000/chat"
 if st.button("Ask AI AGENT"):
     if user_query.strip():
         payload={
@@ -35,14 +35,26 @@ if st.button("Ask AI AGENT"):
             "model_provider": provider,
             "system_prompt": system_prompt,
             "messages": user_query,
-            "allow_search": allow_search
+            "allow_search": allow_search,
+            "api_key_model": api_key_model,
+            "tavily_api_key": tavily_api_key
         }
-        response =requests.post(API_URL,json=payload)
-        if response.status_code == 200:
-          response_data = response.json()
-          if "error" in response_data:
-              st.error(response_data["error"])
-          else:
-              st.success("AI Agent Response:")
-              st.markdown(response_data)
-            
+        response = requests.post(API_URL, json=payload)
+
+        try:
+            response_data = response.json()
+            if response.status_code == 200:
+                if isinstance(response_data, dict) and "error" in response_data:
+                    st.error(response_data["error"])
+                else:
+                    st.success("AI Agent Response:")
+                    st.markdown(response_data)
+            else:
+                st.error(f"Server error {response.status_code}")
+                st.write(response_data)
+        except Exception as e:
+            st.error("Invalid response from server.")
+            st.write(response.text)  # This shows the raw text from server
+
+
+        

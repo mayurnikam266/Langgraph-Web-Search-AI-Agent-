@@ -10,7 +10,8 @@ class RequestState(BaseModel):
     system_prompt: str
     messages: str
     allow_search: Optional[bool] = True
-
+    api_key_model: Optional[str] = None
+    tavily_api_key: Optional[str] = None
 
 app = FastAPI(title="langgraph AI Agent")
 ALLOWED_MODEL_NAMES= ["llama3-70b-8192"]
@@ -27,11 +28,12 @@ def chat_endpoint(request : RequestState):
   query=request.messages
   allow_search=request.allow_search 
   system_prompt = request.system_prompt
-  
-  response= get_response_from_ai_agent(llm_id,query,allow_search,system_prompt,provider)
+  api_key_model = request.api_key_model
+  tavily_api_key = request.tavily_api_key
+  response= get_response_from_ai_agent(llm_id,query,allow_search,system_prompt,provider,api_key_model,tavily_api_key)
   return response
 
 if __name__ == "__main__":
   import uvicorn
-  uvicorn.run(app, host="127.0.0.2", port=8000)
+  uvicorn.run(app, host="0.0.0.0", port=8000)
   
