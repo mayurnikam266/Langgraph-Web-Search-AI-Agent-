@@ -26,4 +26,9 @@ LangGraph AI Agent is a conversational web-based chatbot powered by FastAPI (bac
 | ☁️ Cloud      | AWS ECS / Lambda / EC2 |
 
 
+## To build and Run container
+# Build the Docker image
+docker build -t ai-agent-app .
 
+# Run the container, mapping ports for FastAPI (8000) and Streamlit (8501)
+docker run -d -p 8000:8000 -p 8501:8501 ai-agent-app
